@@ -1,4 +1,4 @@
-public class CeasarCipher {
+public class CaesarCipher {
     private static final char[] alphabet = new char[]
             {
                     'A', 'B', 'C', 'D', 'E', 'F', 'G',
