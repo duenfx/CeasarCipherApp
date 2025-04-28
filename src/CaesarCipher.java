@@ -30,7 +30,7 @@ public class CaesarCipher {
         for (int i = 0; i < symbol.length; i++) {
             for (int j = 0; j < alphabet.length; j++) {
                 if (symbol[i] == alphabet[j]) {
-                    symbol[i] = alphabet[(j - key) % alphabet.length];
+                    symbol[i] = alphabet[((j - key) + alphabet.length) % alphabet.length];
                     break;
                 }
             }
