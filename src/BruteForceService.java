@@ -1,13 +1,24 @@
 public class BruteForceService {
+
     private boolean isReadable(String text) {
-        return (text.contains(" the ") || text.contains(" and ") || text.contains(" is ") || text.contains(" of ") || text.contains(" "));
+        int matchCount = 0;
+        text = text.toLowerCase();
+        String[] commonWords = {
+                " the ", " and ", " is ", " of ", " to ", " in ", " that", " it ", " was ", " on "
+        };
+        for (String word : commonWords) {
+            if (text.contains(word)) {
+                matchCount++;
+            }
+        }
+        return matchCount >= 3;
     }
-    public String bruteForce(char[] decryptSymbol) {
+    public BruteForceResult bruteForce(char[] encryptSymbol) {
         char[] alphabet = CaesarCipher.getAlphabet();
         for (int key = 1; key < alphabet.length; key++) {
-            String result = CaesarCipher.decryptText(decryptSymbol, key);
+            String result = CaesarCipher.decryptText(encryptSymbol, key);
             if (isReadable(result)) {
-                return result;
+                return new BruteForceResult(result, key);
             }
         }
         return null;
