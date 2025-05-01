@@ -24,6 +24,8 @@ public class FileService {
             suffix = "[ENCRYPTED]";
         } else if (mode.equalsIgnoreCase("DECRYPT")) {
             suffix = "[DECRYPTED]";
+        } else if (mode.equalsIgnoreCase("BRUTE_FORCE")) {
+            suffix = "[BRUTE_FORCED]";
         }
         String newFileName = name + suffix + extension;
         Path dir = path.getParent();
