@@ -7,7 +7,29 @@ public class FileService {
         return Files.readString(path);
     }
 
-    public static void writeFile(Path path, String text) throws IOException {
-        Files.writeString(path, text);
+    public static void writeFile(Path path, String text, String mode) throws IOException {
+        String fileName = path.getFileName().toString();
+        int index = fileName.lastIndexOf(".");
+        String name;
+        String extension;
+        if (index != -1) {
+            name = fileName.substring(0, index);
+            extension = fileName.substring(index);
+        } else {
+            name = fileName;
+            extension = "";
+        }
+        String suffix = "";
+        if (mode.equalsIgnoreCase("ENCRYPT")) {
+            suffix = "[ENCRYPTED]";
+        } else if (mode.equalsIgnoreCase("DECRYPT")) {
+            suffix = "[DECRYPTED]";
+        } else if (mode.equalsIgnoreCase("BRUTE_FORCE")) {
+            suffix = "[BRUTE_FORCED]";
+        }
+        String newFileName = name + suffix + extension;
+        Path dir = path.getParent();
+        Path newPath = dir.resolve(newFileName);
+        Files.writeString(newPath, text);
     }
 }

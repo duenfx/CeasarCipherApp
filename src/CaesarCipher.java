@@ -12,6 +12,9 @@ public class CaesarCipher {
                     '.', ',', ':', '!', '?', '«', '»',
                     '"', ' '
             };
+    public char[] getAlphabet() {
+        return alphabet;
+    }
     public static String encryptText(char[] symbol, int key) {
         String cipherText;
         for (int i = 0; i < symbol.length; i++) {
